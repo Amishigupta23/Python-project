@@ -1,0 +1,776 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "2021_06_22_Amishi_CapstoneProject8_Dictionary",
+      "provenance": [],
+      "collapsed_sections": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "UYmMpXkNw9I6"
+      },
+      "source": [
+        "### **The Horizon Bank - Python Dictionaries**"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "PaanjkTewd2U"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "x9vfVAsbslya"
+      },
+      "source": [
+        "### Context\n",
+        "\n",
+        "Decades before, most of the banks used to maintain the details of their customers in a record book or in an excel sheet in a computer. This is not so reliable as compared to today’s revolutionary growth of technology in almost all of the fields.\n",
+        "\n",
+        "There is also a negative side in today’s growth of technology i.e. the increasing cyber crimes all over the world.\n",
+        "\n",
+        "Do you know, in earlier days we need to stand in a long queue for hours in banks to deposit (a sum of money paid into a bank account) or withdraw (a sum of money withdrawn from a bank account) or to create a new bank account?\n",
+        "But nowadays with the growth of technology, users can create and maintain their bank account or pay their electric bills, phone bills by sitting in their homes. All they need is a smartphone and internet.\n",
+        "\n",
+        "Now, a new bank called Horizon Bank decides to update their banking model from old excel sheets to the latest technology and require a sample project of a bank model. Let us help them in creating this bank application."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "G9pdov_M0nzo"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "2i36Yv3-MPY5"
+      },
+      "source": [
+        "### Problem Statement \n",
+        "\n",
+        "In this project, you have to write a computer program to create an interactive bank application for the Horizon Bank. The application must have two simple functionalities:\n",
+        "\n",
+        "1. Allow a customer to create a new bank account with their following personal details:\n",
+        "\n",
+        "   - Full name\n",
+        "\n",
+        "   - Permanent residential address\n",
+        "\n",
+        "   - Personal or residential phone number\n",
+        "\n",
+        "   - Valid government-issued identification \n",
+        "\n",
+        "   - Amount to be deposited to the account\n",
+        "\n",
+        "2. Allow an existing customer of the bank to \n",
+        "\n",
+        "   - Check their bank balance\n",
+        "   \n",
+        "   - Withdraw some amount from their account provided that the withdrawal amount is less than the available bank balance\n",
+        "   \n",
+        "   - Deposit some amount to their account\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "Y9JYGh67SE1-"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "d55HBFcBpENK"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "IMYx69ZBwsOV"
+      },
+      "source": [
+        "### Programming Approach\n",
+        "\n",
+        "In this project you need to use a Python dictionary to build the **Horizon Bank** application. \n",
+        "\n",
+        "*A python dictionary is a collection of **key-value** pairs where each key-value pair collectively constitutes an item stored in it.*\n",
+        "\n",
+        "**Step 1**\n",
+        "\n",
+        "The data of all the customers needs to be stored in a Python dictionary. Let's call it `cust_data`. \n",
+        "\n",
+        "The key of the `cust_data` dictionary should be an account number of a customer. Its corresponding value should be another dictionary holding the personal details of a customer such as `name`, `address, email id` etc. as shown below. \n",
+        "\n",
+        "```\n",
+        "cust_data = {10011 : {'name': karthik, \n",
+        "                      'address': 'C42, MG Complex, Sector-14, Vashi', \n",
+        "                      'phone num': '9876543210',\n",
+        "                      'govt id': 'C12345Z',\n",
+        "                      'amount': 15999}}\n",
+        "``` \n",
+        "\n",
+        "Here, `10011` is the account number for Karthik's saving account. It acts as a key to the dictionary containing his details.\n",
+        "\n",
+        "To add the personal details of another customer to the `cust_data` dictionary, you need to append it with existing data in the dictionary as shown below.\n",
+        "\n",
+        "```\n",
+        "cust_data = {10011 : {'name': karthik, \n",
+        "                      'address': 'C42, MG Complex, Sector-14, Vashi', \n",
+        "                      'phone num': '9876543210',\n",
+        "                      'govt id': 'C12345Z',\n",
+        "                      'amount': 15999}, \n",
+        "            100012 : {'name' : Hrithik, \n",
+        "                      'address': B-910, Mandapeshwar Kripa, Borivalli, \n",
+        "                      'phone num' : '9876543210',\n",
+        "                      'govt id': 'QL44345',\n",
+        "                      'amount': 13999}}\n",
+        "``` \n",
+        "\n",
+        "Next, you need to create a list holding the personal attributes of a customer, i.e., \n",
+        "\n",
+        "`['name', 'address', 'phone num', 'govt id', 'amount']`\n",
+        "\n",
+        "Let's call it  `new_user_attributes` list.\n",
+        "\n",
+        "**Step 2**\n",
+        "\n",
+        "As the next step, you need to create a function to add a new user to the `cust_data` dictionary. Name the function as `new_user()`. This function should do the following:\n",
+        "\n",
+        "1. Create a random five-digit account number for a new customer. It should not already exist in the `cust_data` dictionary.\n",
+        "\n",
+        "2. Collect the required personal details of a user one-by-one in the `new_user_input` variable.\n",
+        "\n",
+        "4. Create a dictionary by joining the items of the `new_user_attributes` list and the `new_user_input` list for a new user and add it to the `cust_data` dictionary.\n",
+        "\n",
+        "\n",
+        "**Step 3:**\n",
+        "\n",
+        "Then you need to create a function to get the account details of an existing user from the `cust_data` dictionary. Name the function as `existing_user()`. This function should do the following:\n",
+        "\n",
+        "1. Prompt the user to enter their account number. Keep prompting until they enter their correct account number.\n",
+        "\n",
+        "2. Once the user has entered the correct account number, prompt them to enter either `1, 2` or `3` where:\n",
+        "   \n",
+        "   - 1 denotes check the available amount in the account of a user\n",
+        "\n",
+        "   - 2 denotes allow the user to withdraw an amount from their account\n",
+        "   \n",
+        "   - 3 denotes allow the user to deposit an amount to their account\n",
+        "  \n",
+        "  Keep prompting until the user enters the valid input.\n",
+        "  \n",
+        "3. In the case of valid input:\n",
+        "  \n",
+        "   - If the user enters `1`, then display their available account balance.\n",
+        "\n",
+        "   - Else if the user enters `2`, then prompt the user to enter the withdrawal amount.\n",
+        "\n",
+        "     - If the withdrawal amount is greater than the available balance, then terminate the withdrawal action.\n",
+        "\n",
+        "     - Else, subtract the withdrawal amount from the available balance and replace the existing available amount with the updated amount in the `cust_data` dictionary.\n",
+        "\n",
+        "   - Else if the user enters `3`, then prompt them to enter the amount to be deposited to their account. Add the deposit amount to the available balance and update the new deposit amount in the `cust_data` dictionary.\n",
+        "\n",
+        "**Step 4**\n",
+        "\n",
+        "Finally, you need to create an infinite `while` loop to run the application. Inside the loop:\n",
+        "\n",
+        "1. Create a list of valid inputs, i.e., `'1', '2', '3'` where \n",
+        "\n",
+        "   - 1 denotes the user is a new customer who wants to create a new account\n",
+        "\n",
+        "   - 2 denotes the user is an existing customer who wants to either check their balance, withdraw some amount from their account or deposit some amount to their account.\n",
+        "\n",
+        "   - 3 denotes terminate the application or terminate the infinite `while` loop.\n",
+        "\n",
+        "2. Prompt the user to enter either `1, 2,` or `3`. Keep prompting until the user enters the valid input. \n",
+        "\n",
+        "3. If the user enters `1`, then create a new account for the user and get their personal details. After creating the account, terminate the application.\n",
+        "\n",
+        "4. Else if the user enters 2, then display their account balance, reduce their balance or increase their balance depending on their further input. Afterwards, terminate the application.\n",
+        "\n",
+        "5. Else if the user enters 3, then terminate the application."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "UyYUfSu3fJkj"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "toeLx5LJpIV-"
+      },
+      "source": [
+        "### Project Requirements\n",
+        "\n",
+        "1. Create an empty dictionary and store it in the `cust_data` variable. Also, create a list holding the attributes to be filled by a customer. Store the list in the `new_user_attributes` variable.\n",
+        "\n",
+        "2. Create a function to add a new user to the 'cust_data' dictionary. Name the function as `new_user()`.\n",
+        "\n",
+        "3. Create a function to get the account details of an existing user from the `cust_data` dictionary. Name the function as `existing_user()`.\n",
+        "\n",
+        "4. Finally, create an infinite `while` loop to run the application.\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "5JRlGIBRqCGl"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "UCusTfW0tcxe"
+      },
+      "source": [
+        "#### 1. Customer Data\n",
+        "\n",
+        "Create an empty dictionary and store it in the `cust_data` variable. Also create a list holding the attributes to be filled by a customer. Store the list in the `new_user_attributes` variable. The list must contain the following attributes in the same order.\n",
+        "\n",
+        "`'name', 'address', 'phone num', 'govt id', 'amount'`"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "6RL71w3ntzcH"
+      },
+      "source": [
+        "# Create the 'cust_data' dictionary and the 'new_user_attributes' list.\n",
+        "cust_data = {}\n",
+        "new_user_attributes = ['name', 'address', 'phone num', 'govt id', 'amount']"
+      ],
+      "execution_count": 1,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "RETr5Tv1JBls"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "0_OEabQbGQcP"
+      },
+      "source": [
+        "#### 2. Add New User\n",
+        "\n",
+        "Create a function to add a new user to the `cust_data` dictionary. Name the function as `new_user()`. To do this, follow the steps described below.\n",
+        "\n",
+        "**Step 1**: Create a random five-digit account number (ranging between 10000 to 99999) for a new customer. Make sure that it doesn't already exist in the `cust_data` dictionary.\n",
+        "\n",
+        "**Step 2**: Create an empty list and store it in the `new_user_input` variable. This list is used to store the details of the user that is given in the `new_user_attribues` list.\n",
+        "\n",
+        "**Step 3**: Prompt the user to enter all of their required details one-by-one and add  them to the list `new_user_input`. Make sure that the amount added to the list is an integer data-type.\n",
+        "\n",
+        "**Step 4**: Create a dictionary for the new user and add it to the `cust_data` dictionary.\n",
+        "\n",
+        "**Step 5**: Display the following message to the user.\n",
+        "\n",
+        "  ```\n",
+        "  Your details are added successfully.\n",
+        "  Your account number is ABCDE \n",
+        "  Please don't lose it.  \n",
+        "  ```\n",
+        "  where `ABCDE` is some randomly generated 5-digit account number (ranging between 10000 to 99999) for the new user.\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "mROhcvIy0ML6",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "165ba071-5e4d-4c3b-b6e8-61ecbf435ec6"
+      },
+      "source": [
+        "# Create the 'new_user()' function to add a new user to the 'cust_data' dictionary. \n",
+        "import random\n",
+        "def new_user():\n",
+        "  # Step 1: Create a random five-digit account number\n",
+        "  acc_no = random.randint(10000, 99999)\n",
+        "  if acc_no in cust_data:\n",
+        "    acc_no = random.randint(10000 , 99999)\n",
+        "  \n",
+        "  # Step 2: Create an empty list and store it in the new_user_input variable.\n",
+        "  new_user_input = []\n",
+        "  # Step 3: Prompt the user to enter all of their required details one-by-one and add them to the list new_user_input.\n",
+        "  name = input(\"Enter your name: \")\n",
+        "  new_user_input.append(name)\n",
+        "\n",
+        "  address = input(\"Enter your address: \")\n",
+        "  new_user_input.append(address)\n",
+        "\n",
+        "  phone_no = input(\"Enter your phone number: \")\n",
+        "  new_user_input.append(phone_no)\n",
+        "\n",
+        "  govt_id = input(\"Enter your government ID: \")\n",
+        "  new_user_input.append(govt_id)\n",
+        "\n",
+        "  amount = int(input(\"Enter the amount: \"))\n",
+        "  new_user_input.append(amount)\n",
+        "  \n",
+        "  # Step 4: Create a dictionary for the new user and add it to the cust_data dictionary.\n",
+        "  cust_dict = dict(zip(new_user_attributes , new_user_input))\n",
+        "  acc_dict = {acc_no:{'name':new_user_input[0], 'address':new_user_input[1],'phone_no':new_user_input[2],'govt_id':new_user_input[3],'amount':new_user_input[4]}}\n",
+        "  cust_data.update(acc_dict)\n",
+        "  # Step 5: Display the message of successfull account creation to the user.\n",
+        "  print('Your details are added successfully ')\n",
+        "  print('Your account no. is ', acc_no)\n",
+        "  print(\"Please don't lose it \")\n",
+        "\n",
+        "new_user()"
+      ],
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter your name: amishi\n",
+            "Enter your address: 123abc\n",
+            "Enter your phone number: 3452786\n",
+            "Enter your government ID: ui76tyjk\n",
+            "Enter the amount: 10980\n",
+            "Your details are added successfully \n",
+            "Your account no. is  13296\n",
+            "Please don't lose it \n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "PPQ9KXGzyZjt"
+      },
+      "source": [
+        "**Hints**: \n",
+        "\n",
+        "- After creating an empty list `new_user_inputs[]` in step 2, you need to iterate through each element in the `new_user_attributes[]` using a `for` loop to get the details (`'name', 'address', 'phone num', 'govt id', 'amount'`) from the user one after the other. \n",
+        " \n",
+        "- Inside the `for` loop: \n",
+        "    \n",
+        "    1. ask the user to enter the details and store it in a variable (let's say user_input). \n",
+        "\n",
+        "    `user_input = input(\"Enter \" + new_user_attributes[i] + \":\\n\")`, where `i` is the temporary variable of `for` loop that iterates from 1 to 5 (i.e. the length of the `new_user_attributes[]` list).\n",
+        "\n",
+        "    2. Append the details entered by the user to the `new_user_inputs[]` list ( created in step 2) using the `append()` function.  \n",
+        "    \n",
+        "    `new_user_inputs.append(user_input)`. Using an `if` condition, check whether the user is entering the `amount` (`new_user_attributes[i] == 'amount'`), then append it to the `new_user_inputs[]` list as an integer using the `int()` function.\n",
+        "\n",
+        "- Now, zip the values of two lists (`new_user_attributes[]` and `new_user_inputs[]`) using the `zip()` function on top of the `dict()` function to create a dictionary with the items in `new_user_attributes[]` list as keys and items in `new_user_inputs[]` list as their corresponding values. Store this dictionary in the `cust_data` dictionary using\n",
+        "\n",
+        " `cust_data[acc_num] = dict(zip(new_user_attributes, new_user_inputs))`, where `acc_num` is the random five digit account number created in step 1. `cust_data[acc_num]` denotes the particular account number (key) where the details of the new customer should be stored as values."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "aJJT0ojPGPcd"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "rZsDogK8LaOW"
+      },
+      "source": [
+        "#### 3. Existing User\n",
+        "\n",
+        "Create a function to get the account details of an existing user from the `cust_data` dictionary. Name the function as `existing_user()`. To do this, follow the steps described below.\n",
+        "\n",
+        "**Step 1**: Prompt the user to enter their account number. Keep prompting until they enter their correct account number. For each invalid account number, print the following message to the user.\n",
+        "\n",
+        "   ```\n",
+        "   Not found. Please enter your correct account number:\n",
+        "   ```\n",
+        "\n",
+        "**Step 2**: Once the user has entered the correct account number, print the following message to the user.\n",
+        "\n",
+        "   ```\n",
+        "   Welcome, user_name ! \n",
+        "   Enter 1 to check your balance.\n",
+        "   Enter 2 to withdraw an amount.\n",
+        "   Enter 3 to deposit an amount.\n",
+        "   ```\n",
+        "  where `user_name` is the name of the existing user who entered his account number correctly in the first step.\n",
+        "\n",
+        "**Step 3**: Prompt the user to enter either `1, 2` or `3`. Keep prompting until the user enters the valid input. For each invalid input, print the following message to the user.\n",
+        "\n",
+        "   ```\n",
+        "   Invalid input! \n",
+        "   Enter 1 to check your balance.\n",
+        "   Enter 2 to withdraw an amount.\n",
+        "   Enter 3 to deposit an amount.\n",
+        "   ```\n",
+        "\n",
+        "**Step 4**: In the case of valid input:\n",
+        "  \n",
+        "   - If the user enters `1`, then display their available account balance.\n",
+        "\n",
+        "   - Else if the user enters `2`, then prompt the user to enter the withdrawal amount by displaying the `Enter the amount to be withdrawn:` message.\n",
+        "\n",
+        "     - If the withdrawal amount is greater than the available balance, then display the following message.\n",
+        "\n",
+        "       ```\n",
+        "       Insufficient balance.\n",
+        "       Available balance: X\n",
+        "       ```\n",
+        "\n",
+        "        where `X` is the available balance in the user's account.\n",
+        "\n",
+        "     - Else, subtract the withdrawal amount from the available balance and replace the existing available amount with the updated amount in the `cust_data` dictionary. Also, print the following message.\n",
+        "\n",
+        "       ```\n",
+        "       Withdrawal successful.\n",
+        "       Available Balance: Y\n",
+        "       ```\n",
+        "\n",
+        "       where `Y` is the updated amount.\n",
+        "\n",
+        "   - Else if the user enters `3`, then prompt them to enter the amount to be deposited to their account by displaying the `Enter the amount to be deposited:` message. Add the deposit amount to the available balance and update the new deposit amount in the `cust_data` dictionary. Also, display the following message.\n",
+        "\n",
+        "     ```\n",
+        "     Deposit successful.\n",
+        "     Available Balance: Z\n",
+        "     ```\n",
+        "\n",
+        "     where `Z` is the updated deposit amount.\n",
+        " "
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "8HV3cY6O9LeE",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "ea6aa996-275c-454a-f875-fa1524147fbf"
+      },
+      "source": [
+        "# Create the 'existing_user()' function to get the account details of an existing user from the 'cust_data' dictionary.\n",
+        "def existing_user():\n",
+        "  # Step 1\n",
+        "  account_numbers = []\n",
+        "  acc_num = int(input('Enter your account number: '))\n",
+        "  for i in cust_data.keys():\n",
+        "    account_numbers.append(i)\n",
+        "  \n",
+        "  # Step 2\n",
+        "  while acc_num not in cust_data:\n",
+        "    acc_num = int(input(\"Not found. Please enter your correct account number:\\n\"))\n",
+        "  # Step 3\n",
+        "  if acc_num in account_numbers:\n",
+        "    print('Welcome', cust_data[acc_num]['name'])\n",
+        "    valid_num = [1,2,3]\n",
+        "    user_choice = int(input(\"Enter 1 to check your balance. \\n Enter 2 to withdraw an amount. \\n Enter 3 to deposit an amount. \\n Enter here \"))\n",
+        "\n",
+        "    while user_choice not in valid_num:\n",
+        "      print('Invalid input')\n",
+        "      user_choice = int(input(\"Enter 1 to check your balance. \\n Enter 2 to withdraw an amount. \\n Enter 3 to deposit an amount. \\n Enter here \"))\n",
+        "\n",
+        "  # Step 4\n",
+        "  if user_choice ==1 :\n",
+        "    print('Current balance', cust_data[acc_num]['amount'])\n",
+        "\n",
+        "  elif user_choice == 2:\n",
+        "    amount_withdrawn = int(input('Enter the amount of money to be withdrawn: '))  \n",
+        "    if amount_withdrawn > cust_data[acc_num]['amount']:\n",
+        "      print('Insufficient balance \\n Available balance: ',cust_data[acc_num]['amount'])\n",
+        "\n",
+        "    elif amount_withdrawn <= cust_data[acc_num]['amount']:\n",
+        "      amount_left = int(cust_data[acc_num]['amount']) - amount_withdrawn\n",
+        "      cust_data[acc_num]['amount'] = amount_left\n",
+        "      print('Withdrawal Successful! \\n Available balance: ',amount_left)\n",
+        "\n",
+        "  elif user_choice == 3:\n",
+        "      amount_to_deposit = int(input('Enter the amount to be deposited: '))\n",
+        "      amount_added = int(cust_data[acc_num]['amount']) + amount_to_deposit\n",
+        "      cust_data[acc_num]['amount'] = amount_added\n",
+        "      print('Deposit Successful! \\n Available balance: ',amount_added)  \n",
+        "\n",
+        "existing_user()"
+      ],
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter your account number: 13296\n",
+            "Welcome amishi\n",
+            "Enter 1 to check your balance. \n",
+            " Enter 2 to withdraw an amount. \n",
+            " Enter 3 to deposit an amount. \n",
+            " Enter here 1\n",
+            "Current balance 10980\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "HllGVWbv8tgm"
+      },
+      "source": [
+        "**Hints**:\n",
+        "\n",
+        "- Ask the user to enter the account number as an integer (use the `int()` function on top of the `input()` function) and store the input in a variable (let's say `acc_num`). \n",
+        "\n",
+        "- Check whether the account number entered by the user is present in the `cust_data` dictionary or not using the `not in` keyword. \n",
+        "```\n",
+        " while acc_num not in cust_data:\n",
+        "    acc_num = int(input(\"Not found. Please enter your correct account\n",
+        "                        number:\\n\"))\n",
+        "\n",
+        " ```\n",
+        "\n",
+        " This `while` loop will prompt the user with the error message till the user enters an existing account number in the `cust_data` dictionary.\n",
+        "\n",
+        "- If the user enters a valid account number, the user should be able to see the following options:\n",
+        "  \n",
+        "  1. Check balance \n",
+        "  \n",
+        "  2. Withdraw  \n",
+        "  \n",
+        "  3. Deposit\n",
+        "\n",
+        "  Get the input from user (either `1`, `2` or `3`) and store it in the `user_choice` variable. Check whether the user has entered a valid choice and if not, print `'Invalid input'`. \n",
+        "  ```\n",
+        "  while user_choice not in ['1','2','3']:\n",
+        "    print(\"\\nInvalid input!\")\n",
+        "    print(\"Enter 1 to check your balance.\n",
+        "          \\nEnter 2 to withdraw an amount.\n",
+        "          \\nEnter 3 to deposit an amount.\")\n",
+        "    user_choice = input()\n",
+        "  \n",
+        "  ```\n",
+        "\n",
+        "  This `while` loop will prompt the user with `'Invalid input!'` message till the user enters a valid option (`1`, `2` or `3`).\n",
+        "\n",
+        "\n",
+        "- If the user enters `1` i.e. *Check balance* option, then display the available account balance from the `cust_data` dictionary using `cust_data[acc_num]['amount']`, where `acc_num` is the variable storing the account number entered by the user. \n",
+        "\n",
+        " Here, the account number acts as a key to the dictionary containing the amount.\n",
+        "\n",
+        "- Else if the user enters `2` i.e. *Withdraw* option, then perform the following steps:\n",
+        "  \n",
+        "  1. Get the amount to be withdrawn from the user as an integer and store it in a variable (let's say `amt`).\n",
+        "  \n",
+        "  2. Check whether user has entered an amount greater than the available balance using `if amt > cust_data[acc_num]['amount']:`\n",
+        "\n",
+        "  3. If the user enters a valid amount to withdraw then subtract the withdrawn amount from the users account and update the `cust_data` dictionary using\n",
+        "\n",
+        "   ```\n",
+        "      new_amt = int(cust_data[acc_num]['amount']) - amt\n",
+        "      cust_data[acc_num]['amount'] = new_amt\n",
+        "   ```\n",
+        "- Else if the user enters `4` i.e. *Deposit* option, then perform the following steps:  \n",
+        "\n",
+        "   1. Get the amount to be deposited from the user as an integer and store it in a variable (let's say `amt`).\n",
+        "\n",
+        "  2. Add the amount to the users account and update the `cust_data` dictionary using\n",
+        "\n",
+        "   ```\n",
+        "      new_amt = int(cust_data[acc_num]['amount']) + amt\n",
+        "      cust_data[acc_num]['amount'] = new_amt\n",
+        "   ```"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "gdgW4-R6LVB3"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "NyHSsEwEoEvH"
+      },
+      "source": [
+        "#### 4. Infinite `while` Loop \n",
+        "\n",
+        "Finally, create an infinite `while` loop to run the application. Inside the loop:\n",
+        "\n",
+        "  1. Create a list of valid inputs, i.e., `'1', '2', '3'`\n",
+        "\n",
+        "  2. Prompt the user to enter either `1, 2,` or `3` by displaying the following message.\n",
+        "\n",
+        "     ```\n",
+        "     Welcome to the Horizon Bank!\n",
+        "\n",
+        "     Enter 1 if you are a new customer.\n",
+        "     Enter 2 if you are an existing customer.\n",
+        "     Enter 3 to terminate the application.\n",
+        "     ```\n",
+        "\n",
+        "     Keep prompting until the user enters the valid input. For each invalid input, print the following message to the user.\n",
+        "\n",
+        "     ```\n",
+        "     Invalid input!\n",
+        "     Enter 1 if you are a new customer.\n",
+        "     Enter 2 if you are an existing customer.\n",
+        "     Enter 3 to terminate the application.\n",
+        "     ```\n",
+        "\n",
+        "  3. If the user enters `1`, then create a new account for the user and get their personal details. After creating the account, terminate the application with the `Thank you, for banking with us!` message. \n",
+        "\n",
+        "  4. Else if the user enters 2, then display their account balance, reduce their balance or increase their balance depending on their further input. Afterwards, terminate the application with the `Thank you, for banking with us!` message. \n",
+        "\n",
+        "  5. Else if the user enters 3, then terminate the application with the `Thank you, for banking with us!` message. "
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "-QAIIkM1qCNr",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "23f0d354-5216-40f4-ee50-4ea86910276a"
+      },
+      "source": [
+        "# Create an infinite while loop to run the application.\n",
+        "while True :\n",
+        "  valid_inputs = ['1','2','3']\n",
+        "  user_input = input(\"Welcome to the Horizon Bank! \\n Enter '1' if you are a new customer. \\n Enter '2' if you are an existing customer. \\n Enter '3' to terminate the application. \\n Enter your ans: \" )\n",
+        "  while user_input not in valid_inputs:\n",
+        "    user_input = input(\"Invalid Input ! \\n Enter '1' if you are a new customer. \\n Enter '2' if you are an existing customer. /n Enter '3' to terminate the application. \\n Enter your ans: \" ) \n",
+        "  # If the user enters 1, then create a new account for the user and get their personal details. \n",
+        "  if user_input == \"1\":\n",
+        "    new_user()\n",
+        "    print('Thank you, for banking with us ! ')\n",
+        "    break\n",
+        "  # If the user enters 2, then display their account balance, reduce their balance or increase their balance depending on their further input.\n",
+        "  elif user_input == '2':\n",
+        "    existing_user()\n",
+        "    print('Thank you, for banking with us ! ')\n",
+        "    break\n",
+        "  # If the user enters 3, then terminate the application with the 'Thank you, for banking with us!' message. \n",
+        "  else :\n",
+        "    print('Thank you, for banking with us ! ')\n",
+        "    break"
+      ],
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Welcome to the Horizon Bank! \n",
+            " Enter '1' if you are a new customer. \n",
+            " Enter '2' if you are an existing customer. \n",
+            " Enter '3' to terminate the application. \n",
+            " Enter your ans: 2\n",
+            "Enter your account number: 13296\n",
+            "Welcome amishi\n",
+            "Enter 1 to check your balance. \n",
+            " Enter 2 to withdraw an amount. \n",
+            " Enter 3 to deposit an amount. \n",
+            " Enter here 1\n",
+            "Current balance 10980\n",
+            "Thank you, for banking with us ! \n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "8cftzpxoKL6c"
+      },
+      "source": [
+        "**Hints**\n",
+        "\n",
+        "- You can create an infinite loop using `while True`.\n",
+        "\n",
+        "- Here, the user should be able to select the following options:\n",
+        "  \n",
+        "  1. New customer \n",
+        "  \n",
+        "  2. Existing customer  \n",
+        "  \n",
+        "  3. Quit application\n",
+        "\n",
+        "- Get the intput from user (either `1`, `2` or `3`) and store it in the `user_choice` variable. Check whether the user has entered a valid choice and if not, print `'Invalid input'`. \n",
+        "  ```\n",
+        "  while user_choice not in ['1','2','3']:\n",
+        "    print(\"\\nInvalid input!\")\n",
+        "    print(\"Enter 1 to check your balance.\n",
+        "          \\nEnter 2 to withdraw an amount.\n",
+        "          \\nEnter 3 to deposit an amount.\")\n",
+        "    user_choice = input()\n",
+        "  \n",
+        "  ```\n",
+        "\n",
+        "  This `while` loop will prompt the user with `Invalid input!` message till the user enters a valid option.\n",
+        "\n",
+        "- If the user enters `1` i.e. *New customer*, then invoke the `new_user()` function and break the infinite loop using the `break` keyword after displaying the thank you message (`'Thank you, for banking with us!'`).\n",
+        "\n",
+        "- Else if the user enters `2` i.e. *Existing customer*, then invoke the `existing_user()` function and break the infinite loop using the `break` keyword after displaying the thank you message (`'Thank you, for banking with us!'`).\n",
+        "\n",
+        "- Else if the user enters `2` i.e. *Quit application*, then display the thank you message ('Thank you, for banking with us!') and break the infinite loop using the `break` keyword."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "4qIsQMIj-Is3"
+      },
+      "source": [
+        "---"
+      ]
+    }
+  ]
+}
