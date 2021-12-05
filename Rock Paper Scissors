@@ -1,0 +1,438 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Rock Paper Scissors",
+      "provenance": [],
+      "collapsed_sections": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "mu-ot9U1uf_i"
+      },
+      "source": [
+        "#**ROCK PAPER SCISSORS** "
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "L7UdXXKRkGZb"
+      },
+      "source": [
+        "### Overview\n",
+        "\n",
+        "In this project, you have to create a ROCK-PAPER-SCISSORS game in which a player plays either 'Rock', 'Paper' or 'Scissors' and a computer tries to beat the player based on the player's previous moves. This game is generally played between two people. The rules of this game are:\n",
+        "\n",
+        "1. Rock beats scissors.\n",
+        "\n",
+        "2. Scissors beat paper.\n",
+        "\n",
+        "3. Paper beats rock.\n",
+        "\n",
+        "For every move, either a human player gets 1 point or the computer gets 1 point. The game runs till either a human player or the computer reaches a score of 10 points. \n",
+        "\n",
+        "**Player Input Format**\n",
+        "\n",
+        "A player should play his/her move by entering the numbers 0, 1 and 2 where- \n",
+        "\n",
+        "- 0 denotes ROCK.\n",
+        "\n",
+        "- 1 denotes PAPER.\n",
+        "\n",
+        "- 2 denotes SCISSORS.\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "CtDFzWSsvovW"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "9Q0M0oH0vn8W"
+      },
+      "source": [
+        "### The Algorithm\n",
+        "\n",
+        "In the algorithm, the computer should keep a count of player moves (i.e., the counts for 0, 1 and 2) in three separate variables - `count_rock`, `count_paper` and `count_scissors`. The algorithm should decide the computer's move based on the following possibilities:\n",
+        "\n",
+        "- If the value of the `count_rock` variable is greater than the values of the `count_paper` and `count_scissors` variables, then the computer's move should be ROCK.\n",
+        "\n",
+        "- If the value of the `count_paper` variable is greater than the values of the`count_rock` and `count_scissors` variables, then the computer's move should be PAPER.\n",
+        "\n",
+        "- If the value of the `count_scissors` variable is greater than the values of the `count_rock` and `count_paper` variables, then the computer's move should be SCISSORS.\n",
+        "\n",
+        "- In all other cases, the computer should play ROCK, PAPER and SCISSORS randomly.\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "tVGefK0W7XYm"
+      },
+      "source": [
+        "import random\n",
+        "count_paper,count_rock,count_scissors=0,0,0"
+      ],
+      "execution_count": 11,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "CLkrMirEd-J3"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "aRXQ7Psmyc88"
+      },
+      "source": [
+        "def update_counts(user_input):\n",
+        "  global count_paper,count_rock,count_scissors\n",
+        "  if user_input == 0:\n",
+        "    count_rock+=1\n",
+        "  elif user_input == 1:\n",
+        "    count_paper+=1\n",
+        "  else:\n",
+        "    count_scissors+=1"
+      ],
+      "execution_count": 12,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "d13rhawzeBL_"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "mZx0NTuy2l2f"
+      },
+      "source": [
+        "import random\n",
+        "def predict():\n",
+        "  if count_rock > count_paper and count_scissors:\n",
+        "    pred = 0\n",
+        "  elif count_paper > count_rock and count_scissors:\n",
+        "    pred=1\n",
+        "  elif count_scissors > count_rock and count_paper:\n",
+        "    pred=2\n",
+        "  else:\n",
+        "    pred=random.randint(0,2) \n",
+        "  return pred\n"
+      ],
+      "execution_count": 13,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "is9vbO8KeDg8"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "X-z3Zc89DIdh"
+      },
+      "source": [
+        "#### Scores\n",
+        "Now, create two variables `player_score` and `comp_score` to keep a track of the points secured by a player and a computer, respectively. Set their initial values equal to 0.  "
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "kmTRqKuBDiVw"
+      },
+      "source": [
+        "# Create the player_score and comp_score variables.\n",
+        "player_score,comp_score = (0,0)"
+      ],
+      "execution_count": 14,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "bUyVtX_QeE-G"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "lhW2U1tRCJj_"
+      },
+      "source": [
+        "#### Possibilities\n",
+        "\n",
+        "\n",
+        "1. Player plays ROCK, computer plays ROCK, resulting in a tie.\n",
+        "\n",
+        "2. Player plays ROCK, computer plays PAPER, the computer wins.\n",
+        "\n",
+        "3. Player plays ROCK, computer plays SCISSORS, the player wins.\n",
+        "\n",
+        "4. Player plays PAPER, computer plays PAPER, resulting in a tie.\n",
+        "\n",
+        "5. Player plays PAPER, computer plays ROCK, the player wins.\n",
+        "\n",
+        "6. Player plays PAPER, computer plays SCISSORS, the computer wins.\n",
+        "\n",
+        "7. Player plays SCISSORS, computer plays SCISSORS, resulting in a tie.\n",
+        "\n",
+        "8. Player plays SCISSORS, computer plays ROCK, the computer wins.\n",
+        "\n",
+        "9. Player plays SCISSORS, computer plays PAPER, the player wins."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "2T3NfNyB-BXO"
+      },
+      "source": [
+        "def update_scores(user_input):\n",
+        "  global player_score, comp_score\n",
+        "  # Rock wins over scissors, scissors win over paper and paper wins over rock.\n",
+        "  pred= predict()\n",
+        "  if user_input == 0:\n",
+        "    if pred == 0:\n",
+        "      print(\"\\nYou played ROCK, computer played ROCK.\")\n",
+        "      print(\"\\nComputer Score: \", comp_score, \"\\nYour Score: \", player_score)\n",
+        "    elif pred == 1:\n",
+        "      print(\"\\nYou played ROCK, computer played PAPER.\")\n",
+        "      comp_score += 1\n",
+        "      print(\"\\nComputer Score: \", comp_score, \"\\nYour Score: \", player_score)\n",
+        "    else:\n",
+        "      print(\"\\nYou played ROCK, computer played SCISSORS.\")\n",
+        "      player_score += 1\n",
+        "      print(\"\\nComputer Score: \", comp_score, \"\\nYour Score: \", player_score)\n",
+        "  elif user_input == 1:   \n",
+        "    if pred == 0:\n",
+        "      print(\"You played paper, computer played rock.\")\n",
+        "      player_score += 1\n",
+        "      print(\"Computer Score: \", comp_score, \"\\nYour Score: \", player_score)\n",
+        "    elif pred == 1:\n",
+        "      print(\"You played paper, computer played paper.\")\n",
+        "      print(\"Computer Score: \", comp_score, \"\\nYour Score: \", player_score)\n",
+        "    else:\n",
+        "      print(\"You played paper, computer played scissors.\")\n",
+        "      comp_score += 1\n",
+        "      print(\"Computer Score: \", comp_score, \"\\nYour Score: \", player_score)\n",
+        "  else:\n",
+        "    if pred == 0:\n",
+        "      print(\"You played scissors, computer played rock.\")\n",
+        "      comp_score += 1\n",
+        "      print(\"Computer Score: \", comp_score, \"\\nYour Score: \", player_score)\n",
+        "    elif pred == 1:\n",
+        "      print(\"You played scissors, computer played paper.\")\n",
+        "      player_score += 1\n",
+        "      print(\"Computer Score: \", comp_score, \"\\nYour Score: \", player_score)\n",
+        "    else:\n",
+        "      print(\"You played scissors, computer played scissors.\")\n",
+        "      print(\"Computer Score: \", comp_score, \"\\nYour Score: \", player_score)"
+      ],
+      "execution_count": 15,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "U8fwzPIXeHEA"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "XunWo6pKe7jg",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "0e95f9b8-3353-45a5-e7cf-69b88b2dae98"
+      },
+      "source": [
+        "\n",
+        "def gameplay():\n",
+        "  valid_entries = ['0', '1', '2']\n",
+        "  while True:\n",
+        "    user_input=input('Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:')\n",
+        "    while user_input not in valid_entries:\n",
+        "      print('Invalid Input')\n",
+        "      user_input = input(\"Enter 0 for ROCK, 1 for PAPER and 2 for SCISSORS: \")\n",
+        "    user_input=int(user_input)\n",
+        "    update_scores(user_input)\n",
+        "    update_counts(user_input)\n",
+        "    if comp_score==10:\n",
+        "      print('Computer Won')\n",
+        "      break\n",
+        "    elif player_score==10:\n",
+        "      print('You Won')\n",
+        "      break\n",
+        "gameplay()      "
+      ],
+      "execution_count": 16,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:1\n",
+            "You played paper, computer played paper.\n",
+            "Computer Score:  0 \n",
+            "Your Score:  0\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:2\n",
+            "You played scissors, computer played scissors.\n",
+            "Computer Score:  0 \n",
+            "Your Score:  0\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:0\n",
+            "\n",
+            "You played ROCK, computer played PAPER.\n",
+            "\n",
+            "Computer Score:  1 \n",
+            "Your Score:  0\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:2\n",
+            "You played scissors, computer played rock.\n",
+            "Computer Score:  2 \n",
+            "Your Score:  0\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:1\n",
+            "You played paper, computer played scissors.\n",
+            "Computer Score:  3 \n",
+            "Your Score:  0\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:0\n",
+            "\n",
+            "You played ROCK, computer played PAPER.\n",
+            "\n",
+            "Computer Score:  4 \n",
+            "Your Score:  0\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:0\n",
+            "\n",
+            "You played ROCK, computer played PAPER.\n",
+            "\n",
+            "Computer Score:  5 \n",
+            "Your Score:  0\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:1\n",
+            "You played paper, computer played rock.\n",
+            "Computer Score:  5 \n",
+            "Your Score:  1\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:0\n",
+            "\n",
+            "You played ROCK, computer played ROCK.\n",
+            "\n",
+            "Computer Score:  5 \n",
+            "Your Score:  1\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:1\n",
+            "You played paper, computer played rock.\n",
+            "Computer Score:  5 \n",
+            "Your Score:  2\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:1\n",
+            "You played paper, computer played rock.\n",
+            "Computer Score:  5 \n",
+            "Your Score:  3\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:2\n",
+            "You played scissors, computer played paper.\n",
+            "Computer Score:  5 \n",
+            "Your Score:  4\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:2\n",
+            "You played scissors, computer played paper.\n",
+            "Computer Score:  5 \n",
+            "Your Score:  5\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:0\n",
+            "\n",
+            "You played ROCK, computer played PAPER.\n",
+            "\n",
+            "Computer Score:  6 \n",
+            "Your Score:  5\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:0\n",
+            "\n",
+            "You played ROCK, computer played PAPER.\n",
+            "\n",
+            "Computer Score:  7 \n",
+            "Your Score:  5\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:1\n",
+            "You played paper, computer played rock.\n",
+            "Computer Score:  7 \n",
+            "Your Score:  6\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:2\n",
+            "You played scissors, computer played paper.\n",
+            "Computer Score:  7 \n",
+            "Your Score:  7\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:0\n",
+            "\n",
+            "You played ROCK, computer played SCISSORS.\n",
+            "\n",
+            "Computer Score:  7 \n",
+            "Your Score:  8\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:2\n",
+            "You played scissors, computer played rock.\n",
+            "Computer Score:  8 \n",
+            "Your Score:  8\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:0\n",
+            "\n",
+            "You played ROCK, computer played ROCK.\n",
+            "\n",
+            "Computer Score:  8 \n",
+            "Your Score:  8\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:1\n",
+            "You played paper, computer played rock.\n",
+            "Computer Score:  8 \n",
+            "Your Score:  9\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:0\n",
+            "\n",
+            "You played ROCK, computer played ROCK.\n",
+            "\n",
+            "Computer Score:  8 \n",
+            "Your Score:  9\n",
+            "Enter 0 for ROCK , 1 for PAPER and 2 for SCISSORS:1\n",
+            "You played paper, computer played rock.\n",
+            "Computer Score:  8 \n",
+            "Your Score:  10\n",
+            "You Won\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "6i4qUgiVdhgP"
+      },
+      "source": [
+        "---"
+      ]
+    }
+  ]
+}
