@@ -1,0 +1,269 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "2021_08_02_Amishi_CapstoneProject9_Strings",
+      "provenance": [],
+      "collapsed_sections": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "UYmMpXkNw9I6"
+      },
+      "source": [
+        "# **Guess the word** - Python String Operation"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "G9pdov_M0nzo"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "2i36Yv3-MPY5"
+      },
+      "source": [
+        "### Problem Statement \n",
+        "\n",
+        "In this project, you have to write a computer program to create an interactive game application called **Guess the Word**. The game must have the following major components:\n",
+        "\n",
+        "1. A repository of English words.\n",
+        "\n",
+        "2. A function to jumble the letters of the English words. \n",
+        "\n",
+        "3. Display a word such that its letters are jumbled, its part of speech and its meaning. Then prompt the player to guess the word one-by-one.  \n",
+        "\n",
+        "6. Check whether the player had guessed the correct word.\n",
+        "\n",
+        "7. Keep a count of the player's correct guesses. \n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "5JRlGIBRqCGl"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "6RL71w3ntzcH"
+      },
+      "source": [
+        "# Create the 'my_words' tuple and the 'score' variable.\n",
+        "my_words = ('questionnaire', 'unconscious', 'precocious', 'liaison', 'surveillance', 'malfeasance', 'irascible', 'idiosyncrasy', 'foudroyant', 'eudemonic')\n",
+        "score = 0"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "RETr5Tv1JBls"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "0_OEabQbGQcP"
+      },
+      "source": [
+        "#### 2. The `shuffler()` Function\n",
+        "\n",
+        "- Create the `shuffler()` function which returns a string containing the jumbled letters of a word. E.g., The `shuffler()` function must return either `wims` or `mwsi` or `imsw` etc. for the word `swim`."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "mROhcvIy0ML6",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        },
+        "outputId": "b522c89f-699c-4414-d908-1bad9aceec1e"
+      },
+      "source": [
+        "# The 'shuffler()' function to to jumble the letters of a word and form a jumbled word.\n",
+        "import random\n",
+        "\n",
+        "def shuffler(word):\n",
+        "  letters = list(word)\n",
+        "  random.shuffle(letters)\n",
+        "  shuffled_word = ''.join(letters)\n",
+        "  return(shuffled_word)\n",
+        "\n",
+        "shuffler('swim')"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "string"
+            },
+            "text/plain": [
+              "'simw'"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 13
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "aJJT0ojPGPcd"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "8HV3cY6O9LeE",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "5eed5291-010b-49bf-dd7a-e5df3d6fdd04"
+      },
+      "source": [
+        "# Check whether player's guess is correct or not\n",
+        "# Printing the title 'GUESS A WORD GAME' center aligned\n",
+        "just_len = 100\n",
+        "print(\"guess a word game\".upper().center(just_len, '-'))\n",
+        "\n",
+        "# Get the player's name and store in a variable\n",
+        "player_name = input(\"\\nWhat's your name?\\n\")\n",
+        "\n",
+        "# Printing the terminate message 'Type 's' to stop the game at any time.'\n",
+        "print(f\"\\nType 's' to stop the game at any time.\\n{'#' * just_len}\") \n",
+        "\n",
+        "# Creating the 'for' loop to shuffle the words in 'my_words' tuple and check the player's guess \n",
+        "for word in my_words:\n",
+        "  shuffled_word = shuffler(word)\n",
+        "  while shuffled_word == word:\n",
+        "    shuffled_word = shuffler(word)\n",
+        "\n",
+        "  # Asking the user to 'Guess the word:' and store the word in a variable\n",
+        "  player_guess = input(f\"Guess the correct Word : {shuffled_word.upper()} \\n\")\n",
+        "  \n",
+        "  # Convert the player guess to upper case using the 'upper()' function\n",
+        "  # Write your code here\n",
+        "  player_guess.upper()\n",
+        "  # If player enters 's' then terminate the 'for' loop using 'break' keyword  \n",
+        "  # Write your code here\n",
+        "  if player_guess == 's':\n",
+        "    break\n",
+        "  # If the player's guess is correct print 'Correct!!' and increase the 'score' by 1.\n",
+        "  # Write your code here\n",
+        "  if player_guess == word:\n",
+        "    print('Correct !!')\n",
+        "    score+= 1\n",
+        "  # Else print 'WRONG! Correct word is (correct_word)'\n",
+        "  # Write your code here  \n",
+        "  else :\n",
+        "    print('Wrong! The correct word is',word)    "
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "-----------------------------------------GUESS A WORD GAME------------------------------------------\n",
+            "\n",
+            "What's your name?\n",
+            "Amishi\n",
+            "\n",
+            "Type 's' to stop the game at any time.\n",
+            "####################################################################################################\n",
+            "Guess the correct Word : EESUINTAIROQN \n",
+            "questionnaire\n",
+            "Correct !!\n",
+            "Guess the correct Word : OUSNNSCCOUI \n",
+            "unconscious\n",
+            "Correct !!\n",
+            "Guess the correct Word : CCOPREOSIU \n",
+            "precocious\n",
+            "Correct !!\n",
+            "Guess the correct Word : ISANOIL \n",
+            "liaison\n",
+            "Correct !!\n",
+            "Guess the correct Word : IUCLSLNEEAVR \n",
+            "s\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "gdgW4-R6LVB3"
+      },
+      "source": [
+        "---"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "-QAIIkM1qCNr",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "867510ac-1a2d-48ae-cef6-c1edb8d04518"
+      },
+      "source": [
+        "# Display 'Game Over' and Final score to the player\n",
+        "print(f\"Game Over! \\n{player_name}, Your score is {score}.\")    "
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "Game Over! \n",
+            "Amishi, Your score is 4.\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "4qIsQMIj-Is3"
+      },
+      "source": [
+        "---"
+      ]
+    }
+  ]
+}
